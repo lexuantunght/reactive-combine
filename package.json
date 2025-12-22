@@ -11,6 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "tsc"
   },
+  "repository": {
+    "url": "https://github.com/lexuantunght/reactive-combine"
+  },
   "keywords": [
     "Reactive"
   ],
