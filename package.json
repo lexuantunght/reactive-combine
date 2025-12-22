@@ -1,0 +1,25 @@
+{
+  "name": "reactive-combine",
+  "version": "1.0.0",
+  "description": "Reactive adaptor for JS App",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "tsc"
+  },
+  "keywords": [
+    "Reactive"
+  ],
+  "author": "lexuantunght",
+  "license": "MIT",
+  "peerDependencies": {
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
