@@ -1,10 +1,10 @@
-import { signalStore } from './constant';
+import { SIGNAL_KEY } from './constant';
 import { Signal } from './signal';
 
 export const Reactive = (target: Object, propertyKey: string) => {
-    const signals: Map<string, Signal> = signalStore.get(target) || new Map();
+    const signals: Map<string, Signal> = Reflect.getMetadata(SIGNAL_KEY, target) || new Map();
     signals.set(propertyKey, new Signal());
-    signalStore.set(target, signals);
+    Reflect.defineMetadata(SIGNAL_KEY, signals, target);
 };
 
 export const observable = <T extends { new (...args: any[]): {} }>() => {
@@ -13,7 +13,7 @@ export const observable = <T extends { new (...args: any[]): {} }>() => {
             constructor(...args: any[]) {
                 super(...args);
 
-                const signals: Map<string, Signal> = signalStore.get(this);
+                const signals: Map<string, Signal> = Reflect.getMetadata(SIGNAL_KEY, this);
 
                 signals.forEach((signal, key) => {
                     let value = this[key as keyof typeof this];

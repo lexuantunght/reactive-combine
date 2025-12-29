@@ -1,4 +1,4 @@
-import { signalStore } from './constant';
+import { SIGNAL_KEY } from './constant';
 import { Signal } from './signal';
 
 export function observe<T extends Object, K extends keyof T>(
@@ -28,7 +28,7 @@ export function observe<T extends Object, K extends keyof T>(
         throw Error('Callback cannot be null or undefined');
     }
 
-    const signals: Map<string, Signal<T[K]>> = signalStore.get(instance);
+    const signals: Map<string, Signal<T[K]>> = Reflect.getMetadata(SIGNAL_KEY, instance);
     if (!signals) {
         throw Error(`The instance of ${instance.constructor.name} is not observable`);
     }
@@ -77,7 +77,7 @@ export function unobserve<T extends Object, K extends keyof T>(
         return;
     }
 
-    const signals: Map<string, Signal<T[K]>> = signalStore.get(instance)
+    const signals: Map<string, Signal<T[K]>> = Reflect.getMetadata(SIGNAL_KEY, instance);
     if (!signals) {
         return;
     }

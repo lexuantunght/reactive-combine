@@ -2,11 +2,8 @@
 
 # How to install
 
-```
-
-npm install reactive-combine
-
-```
+1. npm install reactive-combine reflect-metadata
+2. import 'reflect-metadata' in the first line of your project entrypoint
 
 # How to use
 
@@ -43,39 +40,6 @@ function App() {
     }
 
     return <AppContent>;
-}
-
-```
-
-# Create custom hook in React usage
-
-```
-
-import React from 'react';
-import { observe } from 'reactive-combine';
-
-export function useReactive<T extends object>(instance: T) {
-    const [, setTick] = React.useState(0);
-
-    React.useEffect(() => {
-        return observe(instance, () => {
-            setTick((t) => t + 1);
-        });
-    }, [instance]);
-
-    return instance;
-}
-
-export function useReactiveItem<T extends object, K extends keyof T>(instance: T, item: T[K]) {
-    const [, setTick] = React.useState(0);
-
-    React.useEffect(() => {
-        return observe(instance, item, () => {
-            setTick((t) => t + 1);
-        });
-    }, [instance, item]);
-
-    return instance[item];
 }
 
 ```
