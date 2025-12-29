@@ -12,9 +12,18 @@ export function observe<T extends Object, K extends keyof T>(
 ): () => void;
 export function observe<T extends Object, K extends keyof T>(
     instance: T,
-    item?: K,
-    callback?: (data: T[K]) => void
+    param2?: unknown,
+    param3?: unknown,
 ) {
+    let item: T[K] | null = null;
+    let callback: ((data: unknown) => void) | undefined;
+    if (typeof param2 === 'string') {
+        item = param2 as T[K];
+        callback = param3 as ((data: unknown) => void) | undefined;
+    } else {
+        callback = param2 as ((data: unknown) => void) | undefined;
+    }
+
     if (!callback) {
         throw Error('Callback cannot be null or undefined');
     }
@@ -52,9 +61,18 @@ export function unobserve<T extends Object, K extends keyof T>(
 ): void
 export function unobserve<T extends Object, K extends keyof T>(
     instance: T,
-    item?: K,
-    callback?: (data: T[K]) => void
+    param2?: unknown,
+    param3?: unknown
 ) {
+    let item: T[K] | null = null;
+    let callback: ((data: unknown) => void) | undefined;
+    if (typeof param2 === 'string') {
+        item = param2 as T[K];
+        callback = param3 as ((data: unknown) => void) | undefined;
+    } else {
+        callback = param2 as ((data: unknown) => void) | undefined;
+    }
+
     if (!callback) {
         return;
     }
@@ -63,6 +81,7 @@ export function unobserve<T extends Object, K extends keyof T>(
     if (!signals) {
         return;
     }
+
     if (item) {
         const signal = signals.get(String(item));
         if (!signal) {
@@ -71,6 +90,7 @@ export function unobserve<T extends Object, K extends keyof T>(
         signal.unsubscribe(callback);
         return;
     }
+    
     signals.forEach((signal) => {
         signal.unsubscribe(callback);
     });
