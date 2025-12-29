@@ -1,6 +1,6 @@
 {
   "name": "reactive-combine",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Reactive adaptor for JS App",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
