@@ -1,1 +1,1 @@
-export const SIGNAL_KEY = Symbol('signalProperties');
+export const signalStore = new WeakMap();

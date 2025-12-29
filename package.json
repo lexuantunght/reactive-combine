@@ -1,6 +1,6 @@
 {
   "name": "reactive-combine",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Reactive adaptor for JS App",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,6 @@
   ],
   "author": "lexuantunght",
   "license": "MIT",
-  "peerDependencies": {
-    "reflect-metadata": "^0.2.2"
-  },
   "devDependencies": {
     "typescript": "^5.9.3"
   }
